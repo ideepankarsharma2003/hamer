@@ -28,6 +28,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 # REVIEW: We need to install/upgrade wheel and setuptools first because otherwise installation fails:
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --upgrade wheel setuptools
+RUN pip install "setuptools<70"
 
 # Install torch and torchvision:
 RUN --mount=type=cache,target=/root/.cache/pip \
@@ -35,7 +36,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 # REVIEW: Numpy is installed separately because otherwise installation fails:
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install numpy
+    pip install "numpy<2"
 
 # Install gdown (used for fetching scripts):
 RUN --mount=type=cache,target=/root/.cache/pip \
